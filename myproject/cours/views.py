@@ -7,7 +7,6 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .models import Course , StudentCourse
 from .serializers import CourseSerializer , StudentCourseSerializer
-import openai
 from django.db.models import Q
 import requests
 STUDENT_SERVICE_URL = "http://127.0.0.1:9090/student/getOne"
