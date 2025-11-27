@@ -1,7 +1,6 @@
+# cours/tests.py
 from django.test import TestCase
-from .models import Course
-
-
+from cours.models import Course  # استيراد صحيح
 
 class CourseTests(TestCase):
 
