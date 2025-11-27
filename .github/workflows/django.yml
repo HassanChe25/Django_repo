@@ -25,7 +25,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          # إذا كان requirements.txt في جذر المشروع
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          # إذا كان requirements.txt في مجلد myproject/
           if [ -f myproject/requirements.txt ]; then pip install -r myproject/requirements.txt; fi
 
       # 4️⃣ Run migrations for test database
@@ -45,9 +47,13 @@ jobs:
 
       # 7️⃣ Build Docker Image
       - name: Build Docker Image
-        run: docker build -t django-app .
+        run: |
+          # إذا كان Dockerfile في جذر المشروع
+          if [ -f Dockerfile ]; then docker build -t django-app .; fi
+          # إذا كان Dockerfile داخل myproject/
+          if [ -f myproject/Dockerfile ]; then docker build -f myproject/Dockerfile -t django-app .; fi
 
-      # 8️⃣ Run Docker Container (optional local test)
+      # 8️⃣ Run Docker Container (اختياري لمراجعة)
       - name: Run Docker Container
         run: |
           docker run -d -p 8000:8000 --name django-app-test django-app
