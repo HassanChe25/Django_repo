@@ -22,5 +22,4 @@ from django.urls import path ,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cours/', include('cours.urls')),
-    path('', include('Tp_IDL.urls')),
 ]
