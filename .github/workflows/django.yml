@@ -33,7 +33,7 @@ jobs:
       # 4️⃣ Run Django Tests using settings_test.py
       - name: Run Django Tests
         run: |
-          python manage.py test --settings=myproject.settings_test
+          python  myproject/manage.py test --settings=myproject.settings_test
 
       # 5️⃣ Set up Docker Buildx
       - name: Set up Docker Buildx
