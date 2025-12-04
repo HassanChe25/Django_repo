@@ -33,7 +33,7 @@ jobs:
       - name: Run tests
         working-directory: ./myproject
         run: |
-          python manage.py test
+          python manage.py settings_test.py
 
 
   docker-build:
