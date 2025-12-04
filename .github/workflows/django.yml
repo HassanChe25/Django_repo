@@ -73,6 +73,12 @@ jobs:
           docker kill test-container || true
           docker rm test-container || true
 
+      - name: Deploy to Render
+        env:
+          RENDER_DEPLOY_URL: "https://api.render.com/deploy/srv-d4osbmc9c44c738fr1rg?key=hNm5BA_5ins"
+        run: |
+          curl -X POST $RENDER_DEPLOY_URL
+
       # 6) رفع Docker Image إلى Docker Hub (اختياري)
       # - name: Push Docker image
       #   run: |
