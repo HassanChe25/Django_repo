@@ -1,21 +1,15 @@
-FROM python:3.12-slim
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# تثبيت المكتبات الأساسية
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# نسخ ملف المتطلبات
-COPY myproject/requirements.txt /app/
-
-# تثبيت dependencies
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# نسخ المشروع كله
-COPY myproject/ /app/
+COPY . /app/
 
-# تشغيل الخادم (مثال)
+EXPOSE 8000
+
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
